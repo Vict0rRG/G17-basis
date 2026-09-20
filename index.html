@@ -22,6 +22,10 @@
                         Comprar
                     </a>
                 </li>
+                <!-- Tarea 1: I1: enlázala desde el nav de ambas páginas -->
+                 <li>
+                    <a href="nosotros.html">Nosotros</a>
+                </li>
             </ul>
         </nav>
     </header>
@@ -36,7 +40,22 @@
                 </figure>
                 <h3>Macbook Pro 14"</h3>
                 <p><strong>$1,999.99</strong></p>
-                <button type="button">Agregar al carrito</button>
+                <!-- Tarea 1: I2 — Intermedia: table de especificaciones en cada producto (P1) -->
+                    <table>
+                        <tr>
+                            <th>Pantalla</th>
+                            <td>14 pulgadas</td>
+                        </tr>
+                        <tr>
+                            <th>Memoria</th>
+                            <td>16 GB</td>
+                        </tr>
+                        <tr>
+                            <th>Almacenamiento</th>
+                            <td>512 GB SSD</td>
+                        </tr>
+                    </table>
+                    <button type="button">Agregar al carrito</button>
             </article>
             <article>
                 <figure>
@@ -45,7 +64,22 @@
                 </figure>
                 <h3>Macbook Pro 14"</h3>
                 <p><strong>$2,000.99</strong></p>
-                <button type="button">Agregar al carrito</button>
+                <!-- Tarea 1: I2 — Intermedia: table de especificaciones en cada producto (P2) -->
+                    <table>
+                        <tr>
+                            <th>Pantalla</th>
+                            <td>14 pulgadas</td>
+                        </tr>
+                        <tr>
+                            <th>Memoria</th>
+                            <td>16 GB</td>
+                        </tr>
+                        <tr>
+                            <th>Almacenamiento</th>
+                            <td>1 TB SSD</td>
+                        </tr>
+                    </table>
+                    <button type="button">Agregar al carrito</button>
             </article>
             <article>
                 <figure>
@@ -54,6 +88,21 @@
                 </figure>
                 <h3>Macbook Pro 14"</h3>
                 <p><strong>$4,599.99</strong></p>
+                <!-- Tarea 1: I2 — Intermedia: table de especificaciones en cada producto (P3) -->
+                    <table>
+                        <tr>
+                            <th>Pantalla</th>
+                            <td>14 pulgadas</td>
+                        </tr>
+                        <tr>
+                            <th>Memoria</th>
+                            <td>32 GB</td>
+                        </tr>
+                        <tr>
+                            <th>Almacenamiento</th>
+                            <td>1 TB SSD</td>
+                        </tr>
+                    </table>
                 <button type="button">Agregar al carrito</button>
             </article>
             <article>
@@ -63,6 +112,47 @@
                 </figure>
                 <h3>Macbook Pro 14"</h3>
                 <p><strong>$1,009.99</strong></p>
+                <!-- Tarea 1: I2 — Intermedia: table de especificaciones en cada producto (P4) -->
+                    <table>
+                        <tr>
+                            <th>Pantalla</th>
+                            <td>14 pulgadas</td>
+                        </tr>
+                        <tr>
+                            <th>Memoria</th>
+                            <td>16 GB</td>
+                        </tr>
+                        <tr>
+                            <th>Almacenamiento</th>
+                            <td>512 GB SSD</td>
+                        </tr>
+                    </table>
+                <button type="button">Agregar al carrito</button>
+            </article>
+            <!-- Tarea 1: F — Fácil: replica la clase completa y agrega un quinto producto -->
+            <!-- P5 -->
+             <article>
+                <figure>
+                    <img src="img/IMAC24.webp" alt="iMac de 24 pulgadas con chip M4" width="200"/>
+                    <figcaption>Apple</figcaption>
+                </figure>
+                <h3>iMAC 24"</h3>
+                <p><strong>S/. 5,899.00</strong></p>
+                <!-- Tarea 1: I2 — Intermedia: table de especificaciones en cada producto (P5) -->
+                <table>
+                    <tr>
+                        <th>Pantalla</th>
+                        <td>24 pulgadas</td>
+                    </tr>
+                    <tr> 
+                        <th>Memoria</th>
+                        <td>16 GB</td>
+                    </tr>
+                    <tr>
+                        <th>Almacenamiento</th>
+                        <td>256 GB SSD</td>
+                    </tr>
+                </table>
                 <button type="button">Agregar al carrito</button>
             </article>
         </section>
@@ -103,6 +193,13 @@
                     </tr>
                 </tbody>
             </table>
+            <!-- Tarea 1: I2 — Intermedia: una segunda <ol> en el <aside> -->
+            <h3>Retiro en Tienda</h3>
+            <ol>
+                <li>Espera el correo de confirmación de "Pedido Listo para Retiro"</li>
+                <li>Acércate a la zona de entregas de la tienda seleccionada.</li>
+                <li>Presenta tu código QR de compra y tu documento de identidad</li>
+            </ol>
         </aside>
         <section id="compra">
             <h2>Finalizar compra</h2>
@@ -134,13 +231,20 @@
                     </p>
                     <p>
                         <label for="pais">Pais</label><br/>
+                        <!-- Tarea 1: D1 — Difícil: optgroup en país -->
                         <select name="pais" id="pais" required>
                             <option value="">-Elige un pais-</option>
-                            <option value="pe">Peru</option>
-                            <option value="co">Colombia</option>
-                            <option value="mx">Mexico</option>
-                            <option value="ar">Argentina</option>
-                            <option value="es">Espana</option>
+                            <optgroup label="Sudamerica">
+                                <option value="pe">Peru</option>
+                                <option value="co">Colombia</option>
+                                <option value="ar">Argentina</option>
+                            </optgroup>
+                            <optgroup label="Norteamerica">
+                                <option value="mx">Mexico</option>
+                            </optgroup>
+                            <optgroup label="Europa">
+                                <option value="es">Espana</option>
+                            </optgroup>
                         </select>
                     </p>
                     <p>
@@ -158,6 +262,23 @@
                     <p>
                         <label for="notas">Notas para el repartidor (opcinal)</label>
                         <textarea name="notas" id="notas" rows="5" maxlength="200"></textarea>
+                    </p>
+                </fieldset>
+                <!-- Tarea 1: D1 — Difícil: fieldset de facturación — Empresa opcional, RUC y optgroup en pais -->
+                 <fieldset>
+                    <legend>Datos de facturacion</legend>
+                    <p>
+                        <label for="empresa">Empresa (opcional)</label>
+                        <br/>
+                        <input type="text" id="empresa" name="empresa">
+                    </p>
+                    <p>
+                        <label for="ruc">RUC</label><br/>
+                        <input type="text" 
+                        id="ruc" 
+                        name="ruc" 
+                        pattern="[0-9]{11}" 
+                        title="El RUC debe contener 11 digitos">
                     </p>
                 </fieldset>
                 <fieldset>
@@ -181,6 +302,23 @@
                 </p>
                 <button type="submit">Confirmar pedido</button>
             </form>
+        </section>
+        <!-- Tarea 1: D2 — Difícil: preguntas frecuentes con details + summary, sin JavaScript -->
+        <section id="preguntas-frecuentes">
+            <h2>Preguntas frecuentes</h2>
+            <details>
+                <summary>¿Cuánto demora el envio?</summary>
+                <p>El tiempo de entrega depende de la ubicación del cliente</p>
+                <p>En Lima la entrega puede realizarse dentro de las 24 horas</p>
+            </details>
+            <details>
+                <summary>¿Puedo retirar mi compra en tienda?</summary>
+                <p>Si. Debes esperar el correo de confirmacion del pedido listo para retiro antes de acercarte a la tienda</p>
+            </details>
+            <details>
+                <summary>¿Que metodos de pago acepta TechCart?</summary>
+                <p>TechCart permite realizar el pago con tarjeta, PayPal o contra entrega</p>
+            </details>
         </section>
     </main>
     <!-- Footer -->
