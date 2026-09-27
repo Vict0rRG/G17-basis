@@ -41,7 +41,32 @@ button[type="submit"]{
     background-color: hsl(146 85% 26%);
     font-size: 1.125rem;
 }
-/* Tarea 2: I1: Intermedia: tabla más legible: costos a la derecha con td:last-child, fila de Lima en negrita con tr:first-child, investiga caption-side */
+/* Tarea 3: F: Fácil: replica la clase completa, agrega un quinto producto y comprueba que la cuadrícula lo acomoda sola.
+ De yapa, flexboxfroggy.com hasta el nivel 13 */
+#catalogo {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+#catalogo > h2 {
+    grid-column: 1 / -1;
+}
+/* Tarea 3: I1: Intermedia: barra de categorías sobre el catálogo (<nav> + <ul> de 4 enlaces) en fila, centrada,
+ con gap y flex-wrap */
+.categorias {
+    grid-column: 1 / -1;
+}
+.categorias ul {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+}
+
+/* Tarea 2: I1: Intermedia: tabla más legible: costos a la derecha con td:last-child, fila de Lima en negrita 
+con tr:first-child, investiga caption-side */
 aside td:last-child {
     text-align: right;
 }
@@ -84,4 +109,49 @@ h3 {
 }
 #catalogo .titulo {
     color: blue;
+}
+/* Tarea 3: I2: Intermedia: formulario en dos columnas: Ciudad + País 
+y Teléfono + Fecha en un <div class="fila"> flex, cada <p> con flex: 1 */
+.fila {
+    display: flex;
+    gap: 1rem;
+}
+.fila p {
+    flex: 1;
+}
+
+/* Tarea 3: D1: Difícil: el botón de carrito: "Comprar" como botón con un contador en un círculo 
+de $22\times22$ centrado en los dos ejes; investiga inline-flex */
+.carrito {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #00897b;
+    color: #fff;
+    padding: 0.4rem 0.75rem;
+}
+.contador {
+    width: 22px;
+    height: 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #fff;
+    color: #00897b;
+}
+
+/* Tarea 3: D2: Difícil: el pie de una tienda con tres columnas (marca, enlaces, contacto): 
+flex: 1, align-items: flex-start, y que envuelvan con flex: 1 1 200px */
+footer {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+footer {
+    display: flex;
+}
+
+.footer-columna {
+    flex: 1 1 200px;
 }

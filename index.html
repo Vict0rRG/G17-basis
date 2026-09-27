@@ -18,8 +18,10 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#compra">
+                    <!-- Tarea 3: D1: Difícil: el botón de carrito: "Comprar" como botón con un contador en un círculo de $22\times22$ centrado en los dos ejes; investiga inline-flex -->
+                    <a href="#compra" class="carrito">
                         Comprar
+                        <span class="contador">0</span>
                     </a>
                 </li>
                 <!-- Tarea 1: I1: enlázala desde el nav de ambas páginas -->
@@ -33,6 +35,16 @@
     <main>
         <section id="catalogo">
             <h2>Catalogo de productos</h2>
+            <!-- Tarea 3: I1: Intermedia: barra de categorías sobre el catálogo (<nav> + <ul> de 4 enlaces) en fila, centrada, con gap y flex-wrap -->
+            <nav class="categorias" aria-label="Categorias de productos">
+                <ul>
+                    <li><a href="#">Laptops</a></li>
+                    <li><a href="#">Monitores</a></li>
+                    <li><a href="#">Accesorios</a></li>
+                    <li><a href="#">Ofertas</a></li>
+                </ul>
+            </nav>
+
             <article class="destacado">
                 <figure>
                     <img src="https://www.appleperu.pe/wp-content/uploads/macbook-pro-retina.jpg" alt="Macbook Pro 14 pulgadas gris espacial" width="200"/>
@@ -220,6 +232,8 @@
                         <label for="direccion">Direccion</label><br/>
                         <input type="text" id="direccion" name="direccion" required minlength="5" autocomplete="address-line1">
                     </p>
+                    <!-- Tarea 3: I2: Intermedia: formulario en dos columnas: Ciudad + País y Teléfono + Fecha en un <div class="fila"> flex, cada <p> con flex: 1 -->
+                    <div class="fila">
                     <p>
                         <label for="ciudad">Ciudad</label><br/>
                         <input type="text" id="ciudad" name="ciudad" list="ciudades" required autocomplete="address-level2">    
@@ -249,14 +263,18 @@
                             </optgroup>
                         </select>
                     </p>
-                    <p>
-                        <label for="telefono">Telefono</label><br/>
-                        <input type="tel" id="telefono" pattern="[0-9]{7,}" title="Solo numeros, al menos 7 digitos" autocomplete="tel">
-                    </p>
-                    <p>
-                        <label for="fecha">Fecha de entrega deseada</label><br/>
-                        <input type="date" id="fecha" name="fecha">
-                    </p>
+                </div>
+                <!-- Tarea 3: I2: Intermedia: formulario en dos columnas: Ciudad + País y Teléfono + Fecha en un <div class="fila"> flex, cada <p> con flex: 1 -->
+                    <div class="fila">
+                        <p>            
+                            <label for="telefono">Telefono</label></br>
+                            <input type="tel" id="telefono" pattern="[0-9]{7,}" title="Solo numeros, al menos 7 digitos" autocomplete="tel">
+                        </p>
+                        <p>
+                            <label for="fecha">Fecha de entrega deseada</label></br>
+                            <input type="date" id="fecha" name="fecha">
+                        </p>
+                    </div>
                     <p>
                         <label for="cantidad">Cantidad de unidades</label>
                         <input type="number" id="cantidad" name="cantidad" min="1" max="10" step="1" value="1" required>
@@ -324,10 +342,27 @@
         </section>
     </main>
     <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 TechCart - Proyecto educativo</p>
-        <p>Datos e imagenes de <a href="https://dummyjson.com" target="_blank" rel="noopener">DummyJson</a></p>
-        <address>Contacto: <a href="mailto:edwardhc1997@gmail.com">edwardhc1997@gmail.com</a></address>
+    <!-- Tarea 3: D2 — Pie de tienda con tres columnas -->
+     <footer>
+        <div class="footer-columna">
+            <h3>TechCart</h3>
+            <p>&copy; 2026 TechCart - Proyecto educativo</p>
+            <p>Datos e imagenes de <a href="https://dummyjson.com" target="_blank" rel="noopener">DummyJson</a></p>
+        </div>
+        <div class="footer-columna">
+            <h3>Enlaces</h3>
+            <ul>
+                <li><a href="#catalogo">Catalogo</a></li>
+                <li><a href="#compra">Comprar</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+            </ul>
+        </div>
+        <div class="footer-columna">
+            <h3>Contacto</h3>
+            <address>
+                <a href="mailto:contacto@techart.com">contacto@techart.com</a>
+            </address>
+        </div>
     </footer>
 </body>
 </html>
