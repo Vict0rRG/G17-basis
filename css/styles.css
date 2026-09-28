@@ -148,10 +148,122 @@ footer {
     align-items: flex-start;
     flex-wrap: wrap;
 }
-footer {
-    display: flex;
-}
 
 .footer-columna {
     flex: 1 1 200px;
+}
+/* Tarea 4: F: Fácil: replica la clase completa (aside fuera del main, plano, destacada 2×2, lateral, 
+     fieldset en dos columnas, media query) y haz que la segunda tarjeta también ocupe dos columnas 
+     con grid-column: span 2. Si aparece un hueco, prueba grid-auto-flow: dense. De yapa, 
+     cssgridgarden.com: 28 niveles de Grid, como el Froggy de la clase pasada */
+body {
+    display: grid;
+    /*Tarea 4: I2: Intermedia: la lateral a la derecha sin tocar el HTML: la fila del medio pasa a 
+    "contenido lateral" y las columnas a minmax(0, 1fr) 300px. Compruébalo con la insignia grid*/
+    /*grid-template-columns: 280px minmax(0, 1fr);*/
+    grid-template-columns: minmax(0, 1fr) 300px;
+    grid-template-areas:
+        "header header"
+        "promo promo"
+        /*"lateral contenido"*/
+        "contenido lateral"
+        "footer footer";
+}
+/* Tarea 4: D1: Difícil: el pie de una tienda real con Grid: tres <div> (marca, enlaces, contacto) y footer 
+{ display: grid; grid-template-columns: repeat(3, 1fr); }; en el celular, una columna */
+footer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+header {
+    grid-area: header;
+}
+
+main {
+    grid-area: contenido;
+}
+
+aside {
+    grid-area: lateral;
+}
+
+footer {
+    grid-area: footer;
+}
+/* Tarea 4: Tarea 4: TAREA 4: F: Fácil: replica la clase completa (aside fuera del main, plano, destacada 2×2, lateral, 
+     fieldset en dos columnas, media query) y haz que la segunda tarjeta también ocupe dos columnas 
+     con grid-column: span 2. Si aparece un hueco, prueba grid-auto-flow: dense. De yapa, 
+     cssgridgarden.com: 28 niveles de Grid, como el Froggy de la clase pasada */
+#catalogo {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    grid-auto-flow: dense;
+}
+#catalogo > h2,
+#catalogo > .categorias {
+    grid-column: 1 / -1;
+}
+
+#catalogo .destacado {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+#catalogo > article:nth-of-type(2) {
+    grid-column: span 2;
+}
+#compra fieldset:first-of-type {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+#compra fieldset:first-of-type > .fila {
+    grid-column: 1 / -1;
+}
+/*Tarea 4: F + I1: Intermedia: una zona "promo" en el plano: <section class="promo"> entre header y main, 
+grid-area: promo, y la fila "promo promo" en el dibujo (también en la media query)*/
+@media (max-width: 700px) {
+    body {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "header"
+            "promo"
+            "lateral"
+            "contenido"
+            "footer";
+    }
+
+    #catalogo {
+        grid-template-columns: 1fr;
+    }
+
+    #catalogo .destacado {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+
+    #catalogo > article:nth-of-type(2) {
+        grid-column: span 1;
+    }
+
+    #compra fieldset:first-of-type {
+        grid-template-columns: 1fr;
+    }
+
+    #compra fieldset:first-of-type > .fila {
+        grid-column: span 1;
+    }
+
+    .fila {
+        flex-direction: column;
+    }
+    footer {
+        grid-template-columns: 1fr;
+    }
+}
+/*Tarea 4: I1: Intermedia: una zona "promo" en el plano: <section class="promo"> entre header y main, 
+grid-area: promo, y la fila "promo promo" en el dibujo (también en la media query)*/
+.promo {
+    grid-area: promo;
 }

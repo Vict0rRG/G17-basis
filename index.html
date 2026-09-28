@@ -31,6 +31,11 @@
             </ul>
         </nav>
     </header>
+    <!-- Tarea 4: I1: Intermedia: una zona "promo" en el plano: <section class="promo"> entre header y main, 
+        grid-area: promo, y la fila "promo promo" en el dibujo (también en la media query) -->
+     <section class="promo">
+        <p>Envío gratis en Lima por compras mayores a S/. 200</p>
+    </section>
     <!-- CONTENIDO PRINCIPAL -->
     <main>
         <section id="catalogo">
@@ -170,51 +175,10 @@
                 <button type="button">Agregar al carrito</button>
             </article>
         </section>
-        <aside>
-            <h2>Informacion de la compra</h2>
-            <h3>Como comprar en tres pasos</h3>
-            <ol>
-                <li>Elige un producto del catalogo.</li>
-                <li>Agregalo al carrito</li>
-                <li>Confirma tu pedido con tus datos de envio</li>
-            </ol>
-
-            <h3>Costos de envio</h3>
-            <table>
-                <caption>Tarifas por zona</caption>
-                <thead>
-                    <tr>
-                        <th>Zona</th>
-                        <th>Tiempo</th>
-                        <th>Costo</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Lima</td>
-                        <td>24 horas</td>
-                        <td>Gratis</td>
-                    </tr>
-                    <tr>
-                        <td>Resto del Peru</td>
-                        <td>3 a 5 dias</td>
-                        <td>$9.90</td>
-                    </tr>
-                    <tr>
-                        <td>Internacional</td>
-                        <td>7 a 15 dias</td>
-                        <td>$29.90</td>
-                    </tr>
-                </tbody>
-            </table>
-            <!-- Tarea 1: I2 — Intermedia: una segunda <ol> en el <aside> -->
-            <h3>Retiro en Tienda</h3>
-            <ol>
-                <li>Espera el correo de confirmación de "Pedido Listo para Retiro"</li>
-                <li>Acércate a la zona de entregas de la tienda seleccionada.</li>
-                <li>Presenta tu código QR de compra y tu documento de identidad</li>
-            </ol>
-        </aside>
+        <!-- TAREA 4:F: Fácil: replica la clase completa (aside fuera del main, plano, destacada 2×2, 
+         lateral, fieldset en dos columnas, media query) y haz que la segunda tarjeta también ocupe dos 
+         columnas con grid-column: span 2. Si aparece un hueco, prueba grid-auto-flow: dense. 
+         De yapa, cssgridgarden.com: 28 niveles de Grid, como el Froggy de la clase pasada  -->
         <section id="compra">
             <h2>Finalizar compra</h2>
             <form action="">
@@ -267,11 +231,11 @@
                 <!-- Tarea 3: I2: Intermedia: formulario en dos columnas: Ciudad + País y Teléfono + Fecha en un <div class="fila"> flex, cada <p> con flex: 1 -->
                     <div class="fila">
                         <p>            
-                            <label for="telefono">Telefono</label></br>
+                            <label for="telefono">Telefono</label>
                             <input type="tel" id="telefono" pattern="[0-9]{7,}" title="Solo numeros, al menos 7 digitos" autocomplete="tel">
                         </p>
                         <p>
-                            <label for="fecha">Fecha de entrega deseada</label></br>
+                            <label for="fecha">Fecha de entrega deseada</label>
                             <input type="date" id="fecha" name="fecha">
                         </p>
                     </div>
@@ -341,6 +305,55 @@
             </details>
         </section>
     </main>
+    <!-- TAREA 4: F: Fácil: replica la clase completa (aside fuera del main, plano, destacada 2×2, lateral, 
+     fieldset en dos columnas, media query) y haz que la segunda tarjeta también ocupe dos columnas 
+     con grid-column: span 2. Si aparece un hueco, prueba grid-auto-flow: dense. De yapa, 
+     cssgridgarden.com: 28 niveles de Grid, como el Froggy de la clase pasada-->
+     <aside>
+            <h2>Informacion de la compra</h2>
+            <h3>Como comprar en tres pasos</h3>
+            <ol>
+                <li>Elige un producto del catalogo.</li>
+                <li>Agregalo al carrito</li>
+                <li>Confirma tu pedido con tus datos de envio</li>
+            </ol>
+
+            <h3>Costos de envio</h3>
+            <table>
+                <caption>Tarifas por zona</caption>
+                <thead>
+                    <tr>
+                        <th>Zona</th>
+                        <th>Tiempo</th>
+                        <th>Costo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Lima</td>
+                        <td>24 horas</td>
+                        <td>Gratis</td>
+                    </tr>
+                    <tr>
+                        <td>Resto del Peru</td>
+                        <td>3 a 5 dias</td>
+                        <td>$9.90</td>
+                    </tr>
+                    <tr>
+                        <td>Internacional</td>
+                        <td>7 a 15 dias</td>
+                        <td>$29.90</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Tarea 1: I2 — Intermedia: una segunda <ol> en el <aside> -->
+            <h3>Retiro en Tienda</h3>
+            <ol>
+                <li>Espera el correo de confirmación de "Pedido Listo para Retiro"</li>
+                <li>Acércate a la zona de entregas de la tienda seleccionada.</li>
+                <li>Presenta tu código QR de compra y tu documento de identidad</li>
+            </ol>
+        </aside>
     <!-- Footer -->
     <!-- Tarea 3: D2 — Pie de tienda con tres columnas -->
      <footer>
