@@ -1,6 +1,26 @@
-const MONEDA = "$";
-const IGV = 0.18;
-const ENVIO_GRATIS_DESDE = 50;
+// Tarea 8 - FÁCIL: importar los módulos de TechCart
+import { productos } from "./datos.js";
+
+import formatearPrecio, { MONEDA } from "./formato.js";
+
+import {
+    IGV,
+    ENVIO_GRATIS_DESDE,
+    precioConIgv,
+    conDescuento,
+    agregarProducto,
+    cuantosHayDe,
+    resumenCarrito,
+    fichaCorta,
+    agruparPorCategoria,
+    aplicarDescuentoA
+} from "./tienda.js";
+
+
+// Tarea 8 - INTER. 1: Un módulo más. Mover tarifaPorZona y costoDeEnvio a js/envio.js, con sus export y el import de ENVIO_GRATIS_DESDE. La consola tiene que imprimir lo mismo.
+import { tarifaPorZona, costoDeEnvio } from "./envio.js";
+
+// Tarea 8 - FÁCIL: las constantes se obtienen desde los módulos
 let visitasDeHoy = 0;
 
 visitasDeHoy = visitasDeHoy + 1;
@@ -44,27 +64,12 @@ const cuponDelVisitante = null;
 console.log(cupon?.porcentaje);
 console.log(cuponDelVisitante?.porcentaje);
 
+// Tarea 8 - INTER. 1: Un módulo más. Mover tarifaPorZona y costoDeEnvio a js/envio.js, con sus export y el import de ENVIO_GRATIS_DESDE. La consola tiene que imprimir lo mismo
 const compraDelVisitante = 39.9;
-let costoEnvio;
-if(compraDelVisitante > ENVIO_GRATIS_DESDE) {
-    costoEnvio = 0;
-} else {
-    costoEnvio = 9.99;
-}
+const costoEnvio = costoDeEnvio(compraDelVisitante);
+
 console.log("costo de envio:", costoEnvio);
 
-function tarifaPorZona (zona) {
-    switch (zona) {
-        case "Lima" :
-            return 0;
-        case "Resto del Peru":
-            return 9.99;
-        case "Internacional":
-            return 29.99;
-        default:
-            return 9.99;
-    }
-}
 console.log(tarifaPorZona("Internacional"));
 
 
@@ -92,15 +97,7 @@ const precioConIGVExpresion = function (precio) {
     return precio * (1 + IGV);
 }
 
-const conDescuento = (precio, porcentaje = 10) => {
-    const rebaja = precio * (porcentaje / 100);
-    return precio - rebaja;
-}
-
 const conIGVFlecha = (precio) => precio * (1 +IGV);
-
-const formatearPrecio = precio => MONEDA + precio.toFixed(2);
-
 
 console.log(precioConIGV(1000));
 console.log(precioConIGVExpresion(1000));
@@ -114,20 +111,6 @@ function aplicar(precio, transformacion){
 }
 console.log(aplicar(1000, conDescuento));
 console.log(aplicar(1000,conIGVFlecha));
-
-const productos = [
-    {id: 1, nombre: "Macbook Pro 14", precio: 1999.99, categoria: "laptops", stock: 5, destacada: true},
-    {id: 2, nombre: "Iphone 13 Pro", precio: 1099.99, categoria:"smartphones", stock: 8, destacado: false},
-    {id: 3, nombre: "Ipad Mini 2021", precio: 499.99, categoria: "tablets", stock: 0, destacado:false},
-    {id: 4, nombre: "Airpods Max", precio: 549.99, categoria: "audio", stock: 3, destacado: false},
-];
-
-productos.push(
-  {id: 5, nombre: "Macbook Air 13", precio: 1299.99, categoria: "laptops", stock: 4, destacado: false},
-  {id: 6, nombre: "Iphone 15", precio: 999.99, categoria: "smartphones", stock: 0, destacado: false},
-  // Tarea 7 - FACIL: Replicar la clase y agregar un séptimo producto: comprobar length, la tabla y el valor del catálogo
-  {id: 7, nombre: "AirTag", precio: 29.00, categoria: "accesorios", stock: 10, destacado: false}
-);
 
 console.log(productos.length);
 console.log(productos[0].nombre);
@@ -148,7 +131,7 @@ console.table(productos);
 const valorDelCatalogo = productos.reduce((suma, p) => suma + p.precio, 0);
 console.log(valorDelCatalogo.toFixed(2));
 
-// Tarea 7 - INTERMEDIA 1: El catálogo presentable: con map, nombre, categoría y precio formateado. Después, solo los que tienen stock
+// Tarea 7 - INTER. 1: El catálogo presentable: con map, nombre, categoría y precio formateado. Después, solo los que tienen stock
 const catalogoPresentable = productos.map(producto => ({
     nombre: producto.nombre,
     categoria: producto.categoria,
@@ -178,25 +161,8 @@ console.log(carrito[0]);
 carrito.shift();
 console.log(carrito);
 
-// Tarea 7 - INTERMEDIA 2: cuantosHayDe(categoria): función flecha con filter y length. "laptops" da 2, "televisores" da 0
-const cuantosHayDe = categoria =>
-    productos.filter(producto => producto.categoria === categoria).length;
-
-console.log("Laptops:", cuantosHayDe("laptops"));
-console.log("Televisores:", cuantosHayDe("televisores"));
-
-// Tarea 7 - DIFICIL 1: resumenCarrito(items): devuelve { cantidad, total, envio }, con el envío gratis desde $50
-function resumenCarrito(items) {
-    const cantidad = items.length;
-    const total = items.reduce((suma, item) => suma + item.precio, 0);
-    const envio = total >= ENVIO_GRATIS_DESDE ? 0 : 9.99;
-
-    return {
-        cantidad,
-        total,
-        envio
-    };
-}
+console.log("Laptops:", cuantosHayDe(productos, "laptops"));
+console.log("Televisores:", cuantosHayDe(productos, "televisores"));
 
 const carritoCompra = [
     productos[6]
@@ -227,3 +193,92 @@ const masBaratoConStockReduce = productos
     .reduce((masBarato, producto) => producto.precio < masBarato.precio ? producto : masBarato);
 
 console.log("Más barato con stock (filter + reduce):", masBaratoConStockReduce);
+
+ // TAREA 8 - FÁCIL: agregar un producto con spread
+
+ const nuevoProducto = {
+     id: 8,
+     nombre: "Monitor Samsung 27",
+     precio: 249.99,
+     categoria: "monitores",
+     stock: 6,
+     destacado: false
+ };
+
+ const catalogoActualizado = agregarProducto(productos, nuevoProducto);
+
+ console.log("Productos originales:", productos.length);
+ console.log("Productos actualizados:", catalogoActualizado.length);
+ console.table(catalogoActualizado);
+  // Tarea 8 - FÁCIL: Replicar la clase y sumar un producto. Los cuatro archivos y el type="module". Después, un producto nuevo con agregarProducto y su ficha en un template literal de varias líneas. Comprobar: 7 y 6
+ const fichaProducto = `
+ Producto : ${nuevoProducto.nombre}
+ Categoría: ${nuevoProducto.categoria}
+ Precio   : ${formatearPrecio(nuevoProducto.precio)}
+ Con IGV  : ${formatearPrecio(precioConIgv(nuevoProducto.precio))}
+ Stock    : ${nuevoProducto.stock} unidades
+ `;
+
+ console.log(fichaProducto);
+  // Tarea 8 - INTER.2: La ficha corta. fichaCorta con el producto desestructurado en el paréntesis, incluido el envio anidado, y un template literal de tres líneas. Probar con map
+ const productosConEnvio = catalogoActualizado.map(producto => ({
+     ...producto,
+     envio: {
+         zona: "Lima"
+     }
+ }));
+
+ console.table(productosConEnvio);
+
+ // Tarea 8 - INTER.2: La ficha corta. fichaCorta con el producto desestructurado en el paréntesis, incluido el envio anidado, y un template literal de tres líneas. Probar con map
+
+ const fichasCortas = productosConEnvio.map(fichaCorta);
+
+ console.log("Fichas cortas de los productos:");
+
+ fichasCortas.forEach(ficha => console.log(ficha));
+
+ // Tarea 8 - DIFÍCIL 1: Agrupar por categoría. agruparPorCategoria(items): cada llave una categoría, cada valor el arreglo de sus productos. reduce + spread + nombre calculado + ??
+ const productosAgrupados = agruparPorCategoria(catalogoActualizado);
+
+ console.log("Productos agrupados por categoría:");
+ console.log(productosAgrupados);
+
+ console.log("Laptops:", productosAgrupados.laptops.length);
+ console.log("Smartphones:", productosAgrupados.smartphones.length);
+ console.log("Monitores:", productosAgrupados.monitores.length);
+
+
+ // Tarea 8 - DIFÍCIL 2: aplicar descuento sin mutar el catálogo
+
+ const catalogoConDescuento = aplicarDescuentoA(
+     catalogoActualizado,
+     "laptops"
+ );
+
+ console.log("Catálogo original:");
+ console.table(catalogoActualizado);
+
+ console.log("Catálogo con 10% de descuento en laptops:");
+ console.table(catalogoConDescuento);
+
+ // Tarea 8 - DIFÍCIL 2: Rebajar una categoría sin mutar nada. aplicarDescuentoA(items, categoria, porcentaje = 10). Comprobar con ===: los no tocados dan true, los tocados false
+ console.log(
+     "Macbook Pro 14:",
+     catalogoActualizado[0] === catalogoConDescuento[0]
+ );
+
+ console.log(
+     "Iphone 13 Pro:",
+     catalogoActualizado[1] === catalogoConDescuento[1]
+ );
+
+ console.log(
+     "Macbook Air 13:",
+     catalogoActualizado[4] === catalogoConDescuento[4]
+ );
+
+ console.log(
+     "Monitor Samsung 27:",
+     catalogoActualizado[7] === catalogoConDescuento[7]
+ );
